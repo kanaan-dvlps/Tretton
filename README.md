@@ -11,7 +11,7 @@
 - you can proceed to see the documentation via the the postman button
 - if needed please fork the collection
 - then on the left side go to workspace and choose *Tretton Test | Kanaan Bahmani*
-- you can use this link as well: `https://www.postman.com/KanaanBahmani/workspace/tretton37-test-kanaan-bahmani/collection/5766928-a8afb91d-05ca-4ef8-9f28-9371c3068aee`
+- you can use this link as well: `https://www.postman.com/KanaanBahmani/workspace/tretton37-test-kanaan-bahmani/collection/5766928-c70bc408-96b0-4261-a673-4ce3627a991b?ctx=documentation`
 
 - **Please note that:** for the sake of showing how the *authentication* works I've included the auth middleware to the **getCoworker.js** file in the route `/api/coworker` you need to include oyur token like: `Authorization <your_token>`
 
