@@ -1,0 +1,206 @@
+{
+	"info": {
+		"_postman_id": "c70bc408-96b0-4261-a673-4ce3627a991b",
+		"name": "Tretton37 Test | Kanaan Bahmani",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "https://tretton37-assignment-frontend.herokuapp.com/api/coworkers",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://tretton37-assignment-frontend.herokuapp.com/api/coworkers",
+					"protocol": "https",
+					"host": [
+						"tretton37-assignment-frontend",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"api",
+						"coworkers"
+					]
+				},
+				"description": "### used this route to fetch data of coworkers"
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:9000/api/coworkers?start=6&end=5&filter=an",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:9000/api/coworkers?start=6&end=5&filter=an",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9000",
+					"path": [
+						"api",
+						"coworkers"
+					],
+					"query": [
+						{
+							"key": "start",
+							"value": "6"
+						},
+						{
+							"key": "end",
+							"value": "5"
+						},
+						{
+							"key": "filter",
+							"value": "an"
+						}
+					]
+				},
+				"description": "### this is an API to get coworkers\n- you can add filteration on name, city, country\n- this page has pagination "
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:9000/api/scrap/coworkers",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:9000/api/scrap/coworkers",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9000",
+					"path": [
+						"api",
+						"scrap",
+						"coworkers"
+					]
+				},
+				"description": "### scraper\n- run this once ( it won't let you to run more if you even try to :D ) and fill up your DB with coworkers info"
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:9000/api/coworker?id=6158e0e494fa041a2c31e286",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJwYXlsb2FkIjoia2FuYWFuIGJhaG1hbmkiLCJpYXQiOjE2MzMzNDIzNDAsImV4cCI6MTYzNDYzODM0MH0.EC8BFAOws2x0e0PIR5iUgbvhzFYn8iMUj6vH6r5ieTg",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:9000/api/coworker?id=6158e0e494fa041a2c31e286",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9000",
+					"path": [
+						"api",
+						"coworker"
+					],
+					"query": [
+						{
+							"key": "id",
+							"value": "6158e0e494fa041a2c31e286"
+						}
+					]
+				},
+				"description": "### get a single coworker\n- pass the user's id to url to get the user"
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:9000/api/update/6158e0e494fa041a2c31e288",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"name\": \"Kanaan Bahmani\",\n    \"city\": \"Lund\",\n    \"text\": \"I love to join tretton\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:9000/api/update/6158e0e494fa041a2c31e288",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9000",
+					"path": [
+						"api",
+						"update",
+						"6158e0e494fa041a2c31e288"
+					]
+				},
+				"description": "### update a single user\n- pass the user id to the url as parameter\n- send the below values and edit them ( you can edit any of them if not all of them )\n* name\n* city\n* text"
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:9000/api/login",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"username\": \"kanaan bahmani\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:9000/api/login",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9000",
+					"path": [
+						"api",
+						"login"
+					]
+				},
+				"description": "### authentication and token generation\n- send your arbitery username and get the token\n- you token expires within 15 days\n"
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:9000/api/coworkers",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:9000/api/coworkers",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9000",
+					"path": [
+						"api",
+						"coworkers"
+					]
+				},
+				"description": "### get all coworkers"
+			},
+			"response": []
+		}
+	]
+}
