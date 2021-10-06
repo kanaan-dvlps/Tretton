@@ -1,10 +1,30 @@
 # Tretton Test API
 
-### run the App
+### Technologies
+- Node.js
+- MongoDB (database)
+- mongoose (ODM)
+- JWT (authentication)
+- axios (to request to other APIs)
+- Joi (to validate entry data)
+- body-parser
+- dotenv (for reading .env files)
+- you can checkout the package.json file for more info about the project
+
+### Run the app
 - you can use `pm2 start server.js --watch` if you have pm2 installed or `nodemon server.js` if you have nodemon or `node server.js` if you want to stay old school to run the application
 
 - you need to have an **.env** file to run the app, there's no default variables for this app
+- since this won't be as a security issue and for the sake of speed I'll mention the keys that are comming from .env file and you can set whatever value you like to run the environment
 
+```
+\\ .env sample
+BASE_URL=http://<YOUR_HOST_BASE_URL>:<PORT>
+MONGODB_URI=mongodb://<MONGO_HOST>:<MONGO_PORT>/<YOUR_DB_NAME>
+PORT=<YOUR_PORT>
+SECRET=<YOUR_SECRET_SALT>
+
+```
 ## APIs documentation
 [![Run in Postman](https://run.pstmn.io/button.svg)](https://app.getpostman.com/run-collection/5766928-c70bc408-96b0-4261-a673-4ce3627a991b?action=collection%2Ffork&collection-url=entityId%3D5766928-c70bc408-96b0-4261-a673-4ce3627a991b%26entityType%3Dcollection%26workspaceId%3D69fbea48-96bc-4344-b940-2ea2b7e62738)
 
@@ -16,6 +36,7 @@
 - **Please note that:** for the sake of showing how the *authentication* works I've included the auth middleware to the **getCoworker.js** file in the route `/api/coworker` you need to include oyur token like: `Authorization <your_token>`
 
 - you can generate a token in `/api/login`, you need to send it an arbitery username like:
+- you can read in more detail about token generation in the login section
 
 ``` 
  {
@@ -120,15 +141,91 @@ responseBody: {
 - filteration is case-insensitive so don't worry :)
 
 ### Edit Coworker
-- Use this API to edit coworker's name, city, and text
+- Use this API to edit coworker's name, city, and text.
+- API route: `/api/update/:id`
+- you can send the id of the coworker you wish to update its information
+- you can edit name, city, and text all at once or only one of them you wish to edit.
 
+```
+// request body example
+{
+  "name": string,
+  "city": string,
+  "text": string
+}
+```
+```
+// responce body example
+{
+  "updatedModel": {
+    "_id": "6158e0e494fa041a2c31e288",
+    "name": "Kanaan Bahmani",
+    "country": "🇸🇪",
+    "city": "Lund",
+    "text": "I love to join tretton",
+    "imagePortraitUrl": "https://i.1337co.de/profile/amin-yosoh-medium",
+    "__v": 0
+  }
+}
+```
 ### Login
+- use this API to get a token via this url: `/api/login`
+
+```
+// request body example
+{
+  "username": string
+}
+```
+
+```
+// response object example
+{
+  eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJwYXlsb2FkIjoia2FuYWFuIGJhaG1hbmkiLCJpYXQiOjE2MzM1MTg3MDQsImV4cCI6MTYzNDgxNDcwNH0.hHyqFDP3899VpkL_9MHqvYp824ghGdnlk4aCeDYszxM
+}
+```
 
 ### Scraper file
+- this file is there to fill up your database, it's not containerized as was asked in the test, however it does the job and it will only run once to just fill up the database it won't even update the database
+
+- if you want to test it out you can use this url: `/api/scrap/coworkers`
+- the response object is 200+ coworkers info that was provided in this link `https://tretton37-assignment-frontend.herokuapp.com/api/coworkers?`
+
+- this could be an automated thing that would get even notified whenever there was a change in the tretton's database and then update the database.
 
 ### JWT file
+- this file is a middleware for JWT to verify our token that is being sent in the `req.headers['authorization']`.
+- if it can verify the token then it's accepted and the user is authorized to perform the action if not they will be sent a message like so:
 
+```
+// error response example
+// error code of 401
+{
+  codeMessage: 'Unauthorized',
+  response: error.message // what ever the error is will be send back
+}
+```
+- if the user didn't provide a token they will be shown a meesage like so:
+```
+// error response example
+// error code of 403
+{
+  'Token is required'
+}
+```
 ### Token file
+- this is a helper file to create our token
+- the token expires in 15 days
+- the token secret should be provided inside the .env file
 
 ### Coworker Schema file
-
+- this is our coworker's model made with `mongoose.Schema`, our model looks like:
+```
+{
+  name: string
+  country: string
+  city: string
+  text: string
+  imagePortraitUrl: string
+}
+```
