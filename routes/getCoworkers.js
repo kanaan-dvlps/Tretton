@@ -1,12 +1,13 @@
 const router = require('express').Router();
 const CoworkerModel = require('../Models/CoworkerSchema');
+const scraper = require('../helpers/scraper');
 
 router.get('/coworkers', async (req, res, next) => {
   try {
     const { start, end, filter } = req.query;
-
     let SKIP = Number(start);
     let LIMIT = Number(end);
+    const scraperResult = await scraper();
 
     if (filter) {
       // ? new RegExp("^" + filter, "i") is for an case insensitive search
@@ -28,13 +29,15 @@ router.get('/coworkers', async (req, res, next) => {
         data: coworkersList,
         totalLength: coworkersCount
       });
+
     }
   } catch (error) {
     res.status(500).send({
-      codeMessage: 'Internal Error',
-      response: error.message
+      codeMessage: 'Get Coworkers Internal Error',
+      response: error
     });
   }
+
 });
 
 module.exports = router;
