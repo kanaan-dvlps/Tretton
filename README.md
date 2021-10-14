@@ -25,6 +25,19 @@ PORT=<YOUR_PORT>
 SECRET=<YOUR_SECRET_SALT>
 
 ```
+
+## Scraper part
+- The scraper will run when you enter `/api/coworkers` API
+- The scraper helper will run and fetch all the necessary data to match the **coworkers schema** that we have and fill up the database
+- It will look for the chnages that have happened in the DOM and if the data is changed it will save them/it and if there's no change it won't do anything
+# The **Text** part
+- I've already gathered names while traversing and scraping the DOM and the profile urls are something like `tretton37.com/meet/<THE_COWORKER_NAME>`
+- So I decided to eliminate the whitespaces and replace them with dashes and append a /meet behind it
+- Now I have pushed them in an array to have an array of urls and then I'll turn that array into smaller arrays so that when I use them I can turn my API calls into more managed chunks of data
+- Now there should be a way to call those APIs in an async type of request, meaning they should be done in the backgeround and update the database if needed
+- Or we should call the APIs in a way that it is resource efficient.
+- the like other data that we have extracted we need to extract the **text** of each person.
+
 ## APIs documentation
 [![Run in Postman](https://run.pstmn.io/button.svg)](https://app.getpostman.com/run-collection/5766928-c70bc408-96b0-4261-a673-4ce3627a991b?action=collection%2Ffork&collection-url=entityId%3D5766928-c70bc408-96b0-4261-a673-4ce3627a991b%26entityType%3Dcollection%26workspaceId%3D69fbea48-96bc-4344-b940-2ea2b7e62738)
 
